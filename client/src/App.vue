@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <!-- Nav -->
     <v-container fluid style="background: url('https://images.unsplash.com/photo-1517994112540-009c47ea476b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1981&q=80');
       no-repeat center center fixed; 
       -webkit-background-size: cover;
@@ -28,22 +29,23 @@
 
        <v-layout align-start justify-center align-center row fill-height>
         <router-link to="/products" style="textDecoration : none;">
-          <span class="font-weight-medium white--text ghost-button-size-transition">Products</span>
+          <span class="font-weight-medium white--text ghost-button-size-transition">Collections</span>
         </router-link>
        </v-layout>
-
     </v-container>
 
     <v-content>
       <router-view v-on:isLogin="successRegister" v-on:signIn="successSignin"></router-view>
     </v-content>
+    
   </v-app>
 </template>
  
 <script>
 export default {
   name: "App",
-  components: {},
+  components: {
+  },
   data() {
     return {
       isLogin: false,

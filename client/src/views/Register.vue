@@ -77,7 +77,7 @@
             <v-btn
             :disabled="!valid"
             color="orange accent-3"
-            @click="validate"
+            @click="register"
             >
             Sign Up
             </v-btn>
@@ -131,13 +131,7 @@
         this.$router.push('/'),
         this.dialog = false
       },
-      validate () {
-        if (this.$refs.form.validate()) {
-          this.snackbar = true
-          this.register()
-        }
-      },
-      reset () {
+      reset() {
         this.$refs.form.reset()
       },
       resetValidation () {

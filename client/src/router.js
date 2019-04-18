@@ -4,6 +4,7 @@ import homepage from './views/Homepage.vue'
 import register from './views/Register.vue'
 import signIn from './views/SignIn.vue'
 import productList from './views/ProductList.vue'
+import oneProduct from './views/OneProduct.vue'
 
 Vue.use(Router);
 
@@ -28,7 +29,13 @@ export default new Router({
     {
       path: '/products',
       name: 'productList',
-      component: productList
+      component: productList,
+    
+    },
+    {
+      path : '/products/:productId',
+      name : 'oneProduct',
+      component : oneProduct
     }
   ],
 });

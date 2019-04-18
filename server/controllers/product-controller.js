@@ -29,22 +29,20 @@ class ProductController {
     }
 
     static showOne(req,res){
-        if (!req.headers.token) {
-            res.status(401).json({message : 'You dont have any access'})
-        } else {
-            Product
-                .findById({id : req.params.productId})
-                .then((product)=>{
-                    if (product) {
-                        res.status(200).json(product)
-                    } else {
-                        res.status(404).json({message : `item is not found`})
-                    }
-                })
-                .catch(err => {
-                    res.status(500).json(err.message)
-                })
-        }
+     
+        Product
+            .findById({_id : req.params.productId})
+            .then((product)=>{
+                if (product) {
+                    res.status(200).json(product)
+                } else {
+                    res.status(404).json({message : `item is not found`})
+                }
+            })
+            .catch(err => {
+                res.status(500).json(err.message)
+            })
+        
     }
 
     static delete(req,res) {
