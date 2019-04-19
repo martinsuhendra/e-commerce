@@ -8,7 +8,7 @@
         <td class="text-right">{{ props.item.total }}</td>
       </template>
     </v-data-table>
-    <v-btn flat @click="cartCheckout">Cart Checkout</v-btn>
+    <v-btn flat @click="cartCheckout">Checkout</v-btn>
   </v-container>
 </template>
 

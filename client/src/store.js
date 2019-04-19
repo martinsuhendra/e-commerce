@@ -8,7 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         cars: [],
-        detail : null,
+        detail : {},
         carts : [],
         allCarts : [],
         newProduct : '',
@@ -29,6 +29,9 @@ export default new Vuex.Store({
         },
         pushNewProduct(state, payload) {
             state.cars.push(payload)
+        },
+        clearCart(state){
+            state.carts = []
         }
     },
     actions : {
@@ -67,7 +70,6 @@ export default new Vuex.Store({
                 total += item.total
                 amount += item.amount
             })     
-            console.log(amount,'ini amount')
             axios
                 .post('http://localhost:3000/carts',{
                     userId,
@@ -80,6 +82,7 @@ export default new Vuex.Store({
                     }
                 })
                 .then(({data})=> {
+                    context.commit('clearCart')
                     console.log(data);
                 })
                 .catch((err)=> {
@@ -123,8 +126,6 @@ export default new Vuex.Store({
                 })
         },
         createProduct({commit}, newProduct){
-            console.log(newProduct,'ini new');
-            
             const fd = new FormData()
             fd.append('image', newProduct.image)
             fd.append('productName', newProduct.productName)
@@ -140,6 +141,7 @@ export default new Vuex.Store({
                     }
                 })
                 .then(({data})=> {
+                    commit('pushNewProduct', data)
                     console.log(data);
                 })
                 .catch(err => {

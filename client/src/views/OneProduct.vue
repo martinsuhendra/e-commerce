@@ -15,7 +15,6 @@ export default {
           OneProductCard
     },
     created() {
-        console.log(this.$route.params.productId)
         this.getOneProduct(this.$route.params.productId)
     },
     methods: {

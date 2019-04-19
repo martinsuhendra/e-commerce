@@ -153,7 +153,7 @@ import axios from 'axios'
                 this.$emit('isLogin')
             })
             .catch((err)=> {
-                this.$swal("Oops", err.message, "warning")
+                this.$swal("Oops", err, "warning")
             })
       }
     },

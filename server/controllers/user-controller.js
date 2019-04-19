@@ -5,7 +5,6 @@ const { sign } = require('../helpers/jwt')
 class UserController {
     
     static signUp(req, res) {
-    
     let body = {
         firstName : req.body.firstName,
         lastName : req.body.lastName,

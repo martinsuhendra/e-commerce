@@ -1,6 +1,7 @@
 <template>
   <div
     style="max-width: 700px; margin: auto;"
+    v-if="this.$store.state.allCarts.length !== 0"
   >
 
     <v-card>
@@ -8,7 +9,7 @@
         fluid
         grid-list-lg
       >
-        <v-layout row wrap v-for="(cart, index) in carts" :key="index">
+        <v-layout row wrap v-for="(cart, index) in this.$store.state.allCarts" :key="index">
           <v-flex xs12>
             <v-card color="cyan darken-2" class="white--text">
               <v-layout>
@@ -38,6 +39,12 @@
       </v-container>
     </v-card>
   </div>
+  <div v-else style="text-align:center">
+     <router-link to="/products" style="textDecoration : none;">
+          <span class="font-weight-medium ghost-button-transition" id="collection">No Transactions . . . Get Me a Car!!</span>
+     </router-link>
+    <img src="../../public/img/no_data.svg" alt="">
+  </div>
 </template>
 
 <script>
@@ -45,7 +52,6 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
-        carts : this.$store.state.allCarts
     };
   },
   methods: {
@@ -58,7 +64,11 @@ export default {
       this.showCarts()
   },
   computed: {
-      ...mapState(["allCarts"])
+      ...mapState(["allCarts"]),
+
+      localComputed() {
+        return 'Local Computed!';
+      },
   },
   watch: {
       

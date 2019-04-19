@@ -33,15 +33,13 @@
             </v-img>
 
             <v-card-actions>
-              <v-btn small :to="{ name : 'userCart', params : {} }" color="primary" flat v-if="isLogin">Cart Checkout</v-btn>
+              <v-btn small :to="{ name : 'userCart', params : {} }" color="primary" flat v-if="isLogin">View Cart</v-btn>
               <v-spacer></v-spacer>
               <v-btn small @click="cartTrigger(car._id, car.price, car.productName)" v-if="isLogin">
                 <v-icon>add_shopping_cart</v-icon>
               </v-btn>
-
               <router-view></router-view>
-
-              <v-btn :to="{ name : 'oneProduct',params : {productId : car._id} }" icon>
+              <v-btn :to="{ name : 'oneProduct', params : {productId : car._id} }" icon>
                 <v-icon>zoom_in</v-icon>
               </v-btn>
             </v-card-actions>
@@ -182,7 +180,6 @@ export default {
           availableStock: Number(this.availableStock),
           newPrice: Number(this.newPrice)
        }
-       this.$route.push('/products')
        this.createProduct(product)
        this.$swal("success","created","success")
 
