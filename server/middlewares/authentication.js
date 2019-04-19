@@ -1,10 +1,10 @@
 const { verify } = require('../helpers/jwt')
 
 module.exports = (req, res, next) => {
+
     try {
         const decoded = verify(req.headers.token)
-        req.authenticatedUSer = decoded
-        
+        req.authenticatedUser = decoded
         if (req.body.token) {
             res.status(200).json({message: `user is verified`})
         }  else {

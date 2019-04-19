@@ -36,6 +36,8 @@
 
 <script>
 
+import axios from 'axios'
+
   export default {
     data: () => ({
       email: '',
@@ -45,19 +47,22 @@
     }),
     methods: {
       signIn(){
-        this.axios
-          .post('/users/signIn',{
+
+        axios
+          .post('http://localhost:3000/users/signIn',{
           email : this.email,
           password : this.password
         })
         .then(({data})=> {
-          console.log(data)
+          console.log(data,'ini data');
+          
           localStorage.setItem('token', data.token)
           localStorage.setItem('role', data.details.role)
           localStorage.setItem('id', data.details.id)
           this.$emit('signIn')
         })
         .catch((err)=> {
+          console.log(err);
           this.$swal('Oops',err.message, 'warning')
         });
       }

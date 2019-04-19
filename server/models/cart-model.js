@@ -10,14 +10,13 @@ const cartSchema = new Schema ({
         type : Schema.Types.ObjectId,
         ref: 'Product'
     }],
-    quantity : {
+    amount : {
+        type : Number
+    },
+    total : {
         type : Number,
         required: [true, 'Stock must be filled'],
         min: [1, 'Stock cannot be zero']
-    },
-    status: {
-        type : String,
-        default : 'pending'
     }
 })
 

@@ -5,6 +5,8 @@ import register from './views/Register.vue'
 import signIn from './views/SignIn.vue'
 import productList from './views/ProductList.vue'
 import oneProduct from './views/OneProduct.vue'
+import userCart from './views/userCart.vue'
+import showAllCarts from './views/ShowCarts.vue'
 
 Vue.use(Router);
 
@@ -36,6 +38,17 @@ export default new Router({
       path : '/products/:productId',
       name : 'oneProduct',
       component : oneProduct
+    },
+    {
+      path : '/cart',
+      name : 'userCart',
+      component : userCart
+    },
+    {
+      path : '/cart/userId',
+      name : 'showAllCarts',
+      component : showAllCarts
     }
+   
   ],
 });

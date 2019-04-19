@@ -39,12 +39,6 @@ export default {
   computed: {
     ...mapState(['detail'])
   },
-  // data() {
-  //   return {
-  //       car : this.$store.state.detail
-  //   }
-  // },
-
 }
 </script>
 

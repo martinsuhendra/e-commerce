@@ -25,20 +25,19 @@ class UserController {
     }
 
     static signIn(req, res){
-        
         let { email } = req.body
-      
+        
         User.findOne({email})
-            .then(user => {
-                if (!user) {
-                    res.status(404).json({message: `user not found`})
-                } else if(!compare(req.body.password, user.password)){  
+        .then(user => {
+            if (!user) {
+                res.status(404).json({message: `user not found`})
+            } else if(!compare(req.body.password, user.password)){  
                     res.status(401).json({message : `Email/password is incorrect`})
                 } else {
                     let payload = {
                         id: user._id,
                         email: user.email,
-                        role: 'customer'
+                        role: user.role
                     }
                     let token = sign(payload)
                     req.headers.token = token

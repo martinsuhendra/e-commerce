@@ -12,14 +12,13 @@
         <router-link to="/" style="textDecoration : none;">
           <span class="font-weight-light white--text ghost-button-size-transition" style="font-size: 32px">FOXMOTOR</span>
         </router-link>
-
+       
         <v-layout justify-end>
             <router-link to="/users/signIn" style="textDecoration : none;" v-if="isLogin == false">
               <span class="font-weight-light white--text ghost-button-size-transition">Sign In</span>
             </router-link>
+            <span class="font-weight-light white--text ghost-button-size-transition" v-else-if="isLogin" @click="signOut">Sign Out</span>
 
-            <span class="font-weight-light white--text ghost-button-size-transition" v-if="isLogin" @click="signOut">Sign Out</span>
-        
           <router-link to="/users/signUp" style="textDecoration : none;">
             <span class="font-weight-light white--text ghost-button-size-transition">Sign Up</span>
           </router-link>
@@ -29,7 +28,7 @@
 
        <v-layout align-start justify-center align-center row fill-height>
         <router-link to="/products" style="textDecoration : none;">
-          <span class="font-weight-medium white--text ghost-button-size-transition">Collections</span>
+          <span class="font-weight-medium white--text ghost-button-transition" id="collection">Collections</span>
         </router-link>
        </v-layout>
     </v-container>
@@ -37,24 +36,26 @@
     <v-content>
       <router-view v-on:isLogin="successRegister" v-on:signIn="successSignin"></router-view>
     </v-content>
-    
   </v-app>
 </template>
  
 <script>
+
+import { mapState, mapActions } from 'vuex'
 export default {
   name: "App",
   components: {
   },
   data() {
     return {
-      isLogin: false,
       dialog: false,
     };
   },
   methods: {
-    signIn(){
-      
+     ...mapActions(['showCarts']),
+    clearStore(){
+      this.$store.state.carts = []
+      this.$store.state.allCarts = []
     },
     successRegister() {
       let message = "Please login to continue!";
@@ -62,17 +63,22 @@ export default {
       this.$router.push("/users/signIn");
     },
     successSignin() {
-      this.isLogin = true;
+      this.$store.state.isLogin = true;
       this.$router.push("/products");
       this.$swal("You are logged in!", "", "success");
+      this.showCarts()
     },
     signOut() {
-      this.isLogin = false;
+      this.$store.state.isLogin = false;
       localStorage.clear();
       this.$router.push("/");
       this.$swal("You are logged out!", "", "success");
+      this.clearStore()
     },
-  }
+  },
+  computed: {
+    ...mapState(['isLogin'])
+  },
 };
 </script>
 
@@ -104,6 +110,28 @@ export default {
               line-height 0.1s ease-in;
               font-size: 20px
 }
+
+ .ghost-button-transition {
+  display: inline-block;
+  width: 200px;
+  padding: 8px;
+  color: #000;
+  border: 2px solid #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  transition: background-color 0.2s ease-out,
+              color 0.2s ease-out;
+}
+ .ghost-button-transition:hover,
+ .ghost-button-transition:active {
+  background-color: #000;
+  opacity: 0.7;
+  color: #000;
+  transition: background-color 0.3s ease-in,
+              color 0.3s ease-in;
+}
+
 
 .v-card__text {
   padding: 6px;

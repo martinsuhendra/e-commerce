@@ -2,11 +2,17 @@ const Product = require('../models/product-model')
 
 class ProductController {
     static create(req, res){
-       
+   
        let {productName, description, availableStock, image, price} = req.body
+       let gcsUrl = ''
+       if (!req.file) {
+           gcsUrl = 'https://upload.wikimedia.org/wikipedia/en/d/d1/Image_not_available.png'
+       } else {
+           gcsUrl = req.file.gcsUrl
+       }
         if (req.headers.token) {
             Product.create({
-                productName, description, availableStock, image, price
+                productName, description, availableStock, image : gcsUrl, price
             })
             .then((data)=> {
                 res.status(201).json({data, message: `product created`})

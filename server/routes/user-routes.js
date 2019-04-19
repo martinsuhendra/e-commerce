@@ -8,6 +8,6 @@ router.post('/signIn',userController.signIn)
 
 
 //admin
-router.post('/signUpAdmin', userController.signUpAdmin)
-router.post('/signInAdmin', userController.signInAdmin)
+router.post('/signUpAdmin',userController.signUpAdmin)
+router.post('/signInAdmin',userController.signInAdmin)
 module.exports = router

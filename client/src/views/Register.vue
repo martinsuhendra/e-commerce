@@ -98,6 +98,9 @@
 
 
 <script>
+
+import axios from 'axios'
+
   export default {
     data: () => ({
       dialog : false,
@@ -138,8 +141,8 @@
         this.$refs.form.resetValidation()
       },
       register(){
-          this.axios
-            .post(`/users/signUp`,{
+            axios
+            .post(`http://localhost:3000/users/signUp`,{
                 firstName : this.firstName,
                 lastName : this.lastName,
                 email : this.email,
