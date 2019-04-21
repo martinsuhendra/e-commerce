@@ -37,6 +37,8 @@ export default {
 
     //CART BUSINESS PROCESS
     cartCheckout() {
+      this.$swal("Thank You!", "your purchased has been completed","success")
+      this.$router.push('/products')
       this.createCart();
       this.showCarts();
     }

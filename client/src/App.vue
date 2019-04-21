@@ -1,36 +1,53 @@
 <template>
   <v-app>
     <!-- Nav -->
-    <v-container fluid style="background: url('https://images.unsplash.com/photo-1517994112540-009c47ea476b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1981&q=80');
+    <v-container
+      fluid
+      style="background: url('https://images.unsplash.com/photo-1517994112540-009c47ea476b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1981&q=80');
       no-repeat center center fixed; 
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
-      background-size: cover;">
+      background-size: cover;"
+    >
       <v-layout align-start justify-space-around row>
-
         <router-link to="/" style="textDecoration : none;">
-          <span class="font-weight-light white--text ghost-button-size-transition" style="font-size: 32px">FOXMOTOR</span>
+          <span
+            class="font-weight-light white--text ghost-button-size-transition"
+            style="font-size: 32px"
+          >FOXMOTOR</span>
         </router-link>
-       
+
         <v-layout justify-end>
-            <router-link to="/users/signIn" style="textDecoration : none;" v-if="isLogin == false">
-              <span class="font-weight-light white--text ghost-button-size-transition">Sign In</span>
-            </router-link>
-            <span class="font-weight-light white--text ghost-button-size-transition" v-else-if="isLogin" @click="signOut">Sign Out</span>
+          <router-link to="/admin" style="textDecoration : none;">
+            <div class="text-xs-center" small>
+              <v-btn flat small dark>admin</v-btn>
+            </div>
+          </router-link>
+         
+          <router-link to="/users/signIn" style="textDecoration : none;" v-if="isLogin == false">
+            <span class="font-weight-light white--text ghost-button-size-transition">Sign In</span>
+          </router-link>
+          <span
+            class="font-weight-light white--text ghost-button-size-transition"
+            v-else-if="isLogin"
+            @click="signOut"
+          >Sign Out</span>
 
           <router-link to="/users/signUp" style="textDecoration : none;">
             <span class="font-weight-light white--text ghost-button-size-transition">Sign Up</span>
           </router-link>
         </v-layout>
-
       </v-layout>
 
-       <v-layout align-start justify-center align-center row fill-height>
+      <v-layout align-start justify-center align-center row fill-height>
         <router-link to="/products" style="textDecoration : none;">
-          <span class="font-weight-medium white--text ghost-button-transition" id="collection">Collections</span>
+          <span
+            class="font-weight-medium white--text ghost-button-transition"
+            id="collection"
+          >Collections</span>
         </router-link>
-       </v-layout>
+      </v-layout>
     </v-container>
 
     <v-content>
@@ -40,22 +57,20 @@
 </template>
  
 <script>
-
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from "vuex";
 export default {
   name: "App",
-  components: {
-  },
+  components: {},
   data() {
     return {
-      dialog: false,
+      dialog: false
     };
   },
   methods: {
-     ...mapActions(['showCarts']),
-    clearStore(){
-      this.$store.state.carts = []
-      this.$store.state.allCarts = []
+    ...mapActions(["showCarts"]),
+    clearStore() {
+      this.$store.state.carts = [];
+      this.$store.state.allCarts = [];
     },
     successRegister() {
       let message = "Please login to continue!";
@@ -66,24 +81,23 @@ export default {
       this.$store.state.isLogin = true;
       this.$router.push("/products");
       this.$swal("You are logged in!", "", "success");
-      this.showCarts()
+      this.showCarts();
     },
     signOut() {
       this.$store.state.isLogin = false;
       localStorage.clear();
       this.$router.push("/");
       this.$swal("You are logged out!", "", "success");
-      this.clearStore()
-    },
+      this.clearStore();
+    }
   },
   computed: {
-    ...mapState(['isLogin'])
-  },
+    ...mapState(["isLogin"])
+  }
 };
 </script>
 
 <style>
-
 .ghost-button-size-transition {
   display: inline-block;
   width: 200px;
@@ -92,26 +106,23 @@ export default {
   margin: 0 auto;
   padding: 8px;
   color: #fff;
- 
+
   text-align: center;
   outline: none;
   text-decoration: none;
-  transition: width 0.3s ease-out,
-              height 0.3s ease-out,
-              line-height 0.3s ease-out;
+  transition: width 0.3s ease-out, height 0.3s ease-out,
+    line-height 0.3s ease-out;
 }
 .ghost-button-size-transition:hover,
 .ghost-button-size-transition:active {
   width: 220px;
   height: 45px;
   line-height: 45px;
-  transition: width 0.1s ease-in,
-              height 0.1s ease-in,
-              line-height 0.1s ease-in;
-              font-size: 20px
+  transition: width 0.1s ease-in, height 0.1s ease-in, line-height 0.1s ease-in;
+  font-size: 20px;
 }
 
- .ghost-button-transition {
+.ghost-button-transition {
   display: inline-block;
   width: 200px;
   padding: 8px;
@@ -120,18 +131,15 @@ export default {
   text-align: center;
   outline: none;
   text-decoration: none;
-  transition: background-color 0.2s ease-out,
-              color 0.2s ease-out;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out;
 }
- .ghost-button-transition:hover,
- .ghost-button-transition:active {
+.ghost-button-transition:hover,
+.ghost-button-transition:active {
   background-color: #000;
   opacity: 0.7;
   color: #000;
-  transition: background-color 0.3s ease-in,
-              color 0.3s ease-in;
+  transition: background-color 0.3s ease-in, color 0.3s ease-in;
 }
-
 
 .v-card__text {
   padding: 6px;

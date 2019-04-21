@@ -50,15 +50,42 @@ class ProductController {
             })
         
     }
+    static edit(req,res){
+        console.log(req.params,'======= req.params');
+        
+        if (!req.headers.token) {
+            res.status(401).json({message : 'You dont have any access'})            
+        } else {
+            let {productName, description, price, availableStock, image} = req.body
+            Product
+            .findOneAndUpdate({_id : req.params.productId},{
+                productName, description, price, availableStock, image
+            })
+            .then((data)=>{
+                if (!data) {
+                    res.status(404).json({message: 'product not found!'})
+                } else {
+                    res.status(200).json({data, message: 'update success'})
+                }
+            })
+            .catch(err => {
+                res.status(500).json(err.message)
+            }) 
+        }
+    }
 
     static delete(req,res) {
         if (!req.headers.token) {
             res.status(401).json({message : 'You dont have any access'})
         } else {
             Product
-                .deleteOne({id : req.params.productId})
-                .then(()=>{
-                    res.status(200).json({message : `success deleting data`})
+                .deleteOne({_id : req.params.productId})
+                .then((data)=>{
+                    if (!data) {
+                        res.status(404).json({message: 'product not found!'})
+                    } else {
+                        res.status(200).json({data,message : `success deleting data`})
+                    }
                 })
                 .catch(err => {
                     res.status(500).json(err.message)

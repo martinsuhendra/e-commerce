@@ -20,6 +20,7 @@ router.get('/:productId', productController.showOne)
 router.use('', authentication)
 //admin
 router.post(`/`, multer.single('image'), authentication, authorization, gcsMidddlewares.sendUploadToGCS  , productController.create)
+router.patch('/:productId',authentication, authorization, productController.edit)
 router.delete('/:productId', authentication, authorization,productController.delete)
 
 module.exports = router

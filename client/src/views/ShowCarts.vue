@@ -10,7 +10,12 @@ export default {
     name: "ShowCarts",
     components : {
         allCarts
-    }
+    },
+    beforeCreate() {
+        if(!localStorage.getItem('token')){
+           this.$route.push('/') 
+        }
+    },
 }
 </script>
 

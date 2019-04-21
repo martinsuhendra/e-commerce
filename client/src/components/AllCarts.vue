@@ -15,21 +15,29 @@
               <v-layout>
                 <v-flex xs7>
                   <v-card-title primary-title>
-                    <div >
-                      <ul v-for="(product, index) in cart.productId" :key="index">
-                          <li>{{product.productName}}</li>
-                          <li>{{product.price}}</li>
-                      </ul>
+                    <div>
+                      <table>
+                        <thead>
+                          <td>Item</td>
+                          <td>Price</td>
+                        </thead>
+                        <tbody>
+                          <tr v-for="(product, index) in cart.productId" :key="index">
+                            <td>{{product.productName}}</td>
+                            <td>USD {{product.price}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                   </v-card-title>
                 </v-flex>
               </v-layout>
               <v-divider light></v-divider>
               <v-card-actions class="pa-3">
-                Total
-                <div class="headline" px-3> {{cart.total}}</div>
+                <div style="margin-right:30px">Total</div>
+                <div class="headline" px-3>USD {{cart.total}}</div>
                 <v-spacer></v-spacer>
-                Total Items
+                <div style="margin-right:30px">Total Items</div>
                 <div class="headline" px-3> {{cart.amount}}</div>
               </v-card-actions>
               <v-btn flat @click.prevent="getDeleteCart(cart._id)">Delete Cart</v-btn>
@@ -76,5 +84,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.v-card__title {
+    padding: 29px;
+    margin-left: 30px;
+    width: 300px;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+    width: 500px;
+}
 </style>

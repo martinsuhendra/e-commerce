@@ -1,3 +1,4 @@
+
 <template>
   <v-container fluid grid-list-md 3 style="min-height:500px;background: url('https://images.unsplash.com/photo-1552229633-cbbaf48ddd4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60')">
     <v-layout row wrap justify-center style="">
@@ -37,6 +38,7 @@
 </template>
 
 <script>
+
 import {mapState} from 'vuex'
 
 export default {
