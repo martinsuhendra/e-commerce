@@ -29,6 +29,7 @@
 import { mapState, mapActions } from "vuex";
 import axios from "axios";
 export default {
+  name: 'editProduct',
   data() {
     return {
       search: "",
@@ -46,11 +47,13 @@ export default {
       axios
         .get(`http://localhost:3000/products/${this.search}`)
         .then(({ data }) => {
-          (this.productName = data.productName),
-            (this.description = data.description),
-            (this.price = data.price),
-            (this.availableStock = data.availableStock),
-            // this.image = data.image,
+          console.log(data);
+          
+          this.productName = data.productName,
+            this.description = data.description,
+            this.price = data.price,
+            this.availableStock = data.availableStock,
+            this.image = data.image,
             console.log(data);
         })
         .catch(err => {
@@ -86,7 +89,7 @@ export default {
         })
         .catch(err => {
           this.$swal("success", err.response.data.message, "warning");
-          console.log();
+          console.log(err);
         });
     },
     cancel() {

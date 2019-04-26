@@ -181,7 +181,6 @@ export default {
           newPrice: Number(this.newPrice)
        }
        this.createProduct(product)
-       this.$swal("success","created","success")
 
     },
     addToCart(){

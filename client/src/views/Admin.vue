@@ -3,10 +3,10 @@
   min-height: 500px">
     <div class="container" style="background-color: white; opacity:0.9">
       <div style="display: flex; justify-content: center">
-        <router-link to="/admin/edit">
+        <router-link to="/admin/edit" style="text-decoration:none">
           <v-btn color="success" @click="changeShow('edit')">Edit Product</v-btn>
         </router-link>
-        <router-link to="/admin/delete">
+        <router-link to="/admin/delete" style="text-decoration:none">
           <v-btn color="success" @click="changeShow('delete')">Delete Product</v-btn>
         </router-link>
       </div>

@@ -17,7 +17,7 @@
                   <v-card-title primary-title>
                     <div>
                       <table>
-                        <thead>
+                        <thead style="font-size:20px">
                           <td>Item</td>
                           <td>Price</td>
                         </thead>
@@ -49,7 +49,7 @@
   </div>
   <div v-else style="text-align:center">
      <router-link to="/products" style="textDecoration : none;">
-          <span class="font-weight-medium ghost-button-transition" id="collection">No Transactions . . . Get Me a Car!!</span>
+          <span class="font-weight-medium">No Transactions . . . Get Me a Car!!</span>
      </router-link>
     <img src="../../public/img/no_data.svg" alt="">
   </div>
@@ -94,5 +94,10 @@ td, th {
     display: table-cell;
     vertical-align: inherit;
     width: 500px;
+}
+.v-card__title[data-v-76c71362] {
+    padding: 29px;
+    margin-left: 30px;
+    width: 700px;
 }
 </style>

@@ -1,4 +1,3 @@
-
 <template>
   <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="600px">
@@ -47,7 +46,6 @@ import axios from 'axios'
     }),
     methods: {
       signIn(){
-
         axios
           .post('http://localhost:3000/users/signIn',{
           email : this.email,

@@ -31,8 +31,10 @@ class UserController {
             if (!user) {
                 res.status(404).json({message: `user not found`})
             } else if(!compare(req.body.password, user.password)){  
+                console.log('masuk...');
+                
                     res.status(401).json({message : `Email/password is incorrect`})
-                } else {
+            } else {
                     let payload = {
                         id: user._id,
                         email: user.email,

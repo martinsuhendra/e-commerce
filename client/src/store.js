@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import { stat } from 'fs';
+import swal from 'sweetalert';
 
 Vue.use(Vuex)
 
@@ -141,9 +142,13 @@ export default new Vuex.Store({
                     }
                 })
                 .then(({data})=> {
-                    commit('pushNewProduct', data)
-                    console.log(data);
+                    return axios
+                    .get('http://localhost:3000/products')
                 })
+                .then(({data})=> {
+                    commit('setProductList', data)
+                    swal("success","successfully add product","success")
+                  })
                 .catch(err => {
                     console.log(err)
                 })
